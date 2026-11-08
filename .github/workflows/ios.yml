@@ -1,0 +1,42 @@
+name: Verificar e compilar iPhone
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ios:
+    runs-on: macos-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Instalar dependências
+        run: npm ci
+      - name: Verificar código e cálculos
+        run: |
+          npx tsc --noEmit
+          npm test
+      - name: Preparar projeto iOS
+        run: npx expo prebuild --platform ios --no-install
+      - name: Instalar dependências iOS
+        working-directory: ios
+        run: pod install
+      - name: Compilar para iPhone sem assinatura
+        run: |
+          set -euo pipefail
+          xcodebuild -workspace ios/Financeiros.xcworkspace -scheme Financeiros -configuration Release -sdk iphoneos -derivedDataPath "$RUNNER_TEMP/financeiros-build" CODE_SIGNING_ALLOWED=NO build
+          mkdir -p "$RUNNER_TEMP/Payload"
+          cp -R "$RUNNER_TEMP/financeiros-build/Build/Products/Release-iphoneos/Financeiros.app" "$RUNNER_TEMP/Payload/"
+          cd "$RUNNER_TEMP"
+          zip -qry Financeiros-iOS-nao-assinado.ipa Payload
+      - name: Guardar IPA experimental privado
+        uses: actions/upload-artifact@v4
+        with:
+          name: Financeiros-iOS-nao-assinado
+          path: ${{ runner.temp }}/Financeiros-iOS-nao-assinado.ipa
+          retention-days: 7
+          if-no-files-found: error
+

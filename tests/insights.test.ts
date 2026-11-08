@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {reserveMonths,budgetState} from '../src/insights.ts';
+test('reserva e limites usam centavos e limiares corretos',()=>{assert.equal(reserveMonths(150000,75000),2);assert.equal(reserveMonths(1,0),null);assert.throws(()=>reserveMonths(-1,10));assert.equal(budgetState(7999,10000),'normal');assert.equal(budgetState(8000,10000),'warning');assert.equal(budgetState(10000,10000),'exceeded');assert.throws(()=>budgetState(1,0))});

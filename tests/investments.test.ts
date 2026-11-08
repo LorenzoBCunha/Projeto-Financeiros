@@ -1,0 +1,2 @@
+import {test} from 'node:test';import assert from 'node:assert/strict';import {investmentGain,reminderDate} from '../src/investments.ts';
+test('variação usa valor informado e data válida',()=>{assert.deepEqual(investmentGain(10000,12500),{amount:2500,percent:25});assert.deepEqual(investmentGain(0,500),{amount:500,percent:null});assert.throws(()=>investmentGain(-1,5));assert.equal(reminderDate('2027-02-30 15:00'),null);assert.ok(reminderDate('2028-02-29 15:00'));assert.equal(reminderDate('2028-02-29 25:00'),null)});

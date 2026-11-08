@@ -1,0 +1,18 @@
+export const statementChargesSql = `SELECT c.statement_id,t.envelope_id,t.amount FROM credit_charges c JOIN transactions t ON t.id=c.transaction_id WHERE NOT EXISTS(SELECT 1 FROM installment_charges i WHERE i.transaction_id=t.id) UNION ALL SELECT i.statement_id,t.envelope_id,i.amount FROM installment_charges i JOIN transactions t ON t.id=i.transaction_id`;
+export const goalSpentSql = `(
+  COALESCE((SELECT SUM(t.amount) FROM transactions t WHERE t.month_id=me.month_id AND t.envelope_id=me.envelope_id AND t.type='expense' AND (COALESCE(t.payment,'')<>'Crédito' OR EXISTS(SELECT 1 FROM credit_charges reviewed WHERE reviewed.transaction_id=t.id AND reviewed.previously_paid=1)) AND NOT EXISTS(SELECT 1 FROM bill_payments bp WHERE bp.transaction_id=t.id) AND NOT EXISTS(SELECT 1 FROM bill_partial_payments pp WHERE pp.transaction_id=t.id)),0)
+  + COALESCE((SELECT SUM(a.amount) FROM bill_partial_allocations a JOIN transactions paid ON paid.id=a.payment_transaction_id WHERE paid.month_id=me.month_id AND a.envelope_id=me.envelope_id),0)
+  + COALESCE((SELECT SUM(purchase.amount) FROM bill_payments bp JOIN transactions paid ON paid.id=bp.transaction_id JOIN card_statements statement ON statement.debt_id=bp.debt_id JOIN (${statementChargesSql}) purchase ON purchase.statement_id=statement.id WHERE paid.month_id=me.month_id AND purchase.envelope_id=me.envelope_id),0)
+  - COALESCE((SELECT SUM(a.amount) FROM bill_payments bp JOIN transactions paid ON paid.id=bp.transaction_id JOIN bill_partial_payments pp ON pp.debt_id=bp.debt_id JOIN bill_partial_allocations a ON a.payment_transaction_id=pp.transaction_id WHERE paid.month_id=me.month_id AND a.envelope_id=me.envelope_id),0)
+)`;
+export const goalExtraSql = `COALESCE((SELECT SUM(t.amount) FROM transactions t WHERE t.month_id=me.month_id AND t.envelope_id=me.envelope_id AND t.type='extra'),0)`;
+
+export async function cashSpend(db:import('expo-sqlite').SQLiteDatabase,month:string) {
+  const row=await db.getFirstAsync<{direct:number;bills:number;billGoals:number}>(`SELECT
+    COALESCE((SELECT SUM(t.amount) FROM transactions t WHERE t.month_id=? AND t.type='expense' AND COALESCE(t.payment,'')<>'Crédito' AND t.envelope_id IS NULL AND NOT EXISTS(SELECT 1 FROM bill_payments bp WHERE bp.transaction_id=t.id) AND NOT EXISTS(SELECT 1 FROM bill_partial_payments pp WHERE pp.transaction_id=t.id)),0) AS direct,
+    COALESCE((SELECT SUM(paid.amount) FROM bill_payments bp JOIN transactions paid ON paid.id=bp.transaction_id WHERE paid.month_id=?),0) + COALESCE((SELECT SUM(t.amount) FROM bill_partial_payments pp JOIN transactions t ON t.id=pp.transaction_id WHERE t.month_id=?),0) AS bills,
+    COALESCE((SELECT SUM(purchase.amount) FROM bill_payments bp JOIN transactions paid ON paid.id=bp.transaction_id JOIN card_statements statement ON statement.debt_id=bp.debt_id JOIN (${statementChargesSql}) purchase ON purchase.statement_id=statement.id JOIN month_envelopes me ON me.month_id=paid.month_id AND me.envelope_id=purchase.envelope_id WHERE paid.month_id=?),0)
+    - COALESCE((SELECT SUM(a.amount) FROM bill_payments bp JOIN transactions paid ON paid.id=bp.transaction_id JOIN bill_partial_payments pp ON pp.debt_id=bp.debt_id JOIN bill_partial_allocations a ON a.payment_transaction_id=pp.transaction_id JOIN month_envelopes me ON me.month_id=paid.month_id AND me.envelope_id=a.envelope_id WHERE paid.month_id=?),0)
+    + COALESCE((SELECT SUM(a.amount) FROM bill_partial_allocations a JOIN transactions paid ON paid.id=a.payment_transaction_id JOIN month_envelopes me ON me.month_id=paid.month_id AND me.envelope_id=a.envelope_id WHERE paid.month_id=?),0) AS billGoals`,month,month,month,month,month,month);
+  return row??{direct:0,bills:0,billGoals:0};
+}
