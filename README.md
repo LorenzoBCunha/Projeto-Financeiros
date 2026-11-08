@@ -8,8 +8,8 @@ Aplicativo de organização financeira pessoal, criado por Lorenzo. Planeje rece
 
 Acesse a [versão beta e seus arquivos](https://github.com/LorenzoBCunha/financeiro/releases/tag/v1.0.0-beta.1):
 
-- **Android:** [Financeiros.apk](https://github.com/LorenzoBCunha/financeiro/releases/download/v1.0.0-beta.1/Financeiros.apk) — baixe o arquivo no aparelho e siga as instruções de instalação do Android.
-- **iPhone:** [Financeiros-iOS-nao-assinado.ipa](https://github.com/LorenzoBCunha/financeiro/releases/download/v1.0.0-beta.1/Financeiros-iOS-nao-assinado.ipa) — arquivo **experimental e sem assinatura**. Não instala diretamente: precisa ser assinado antes de uma tentativa de instalação.
+- **Android:** [Financeiros-Android.apk](https://github.com/LorenzoBCunha/financeiro/releases/download/v1.0.0-beta.1/Financeiros-Android.apk) — baixe o arquivo no aparelho e siga as instruções de instalação do Android.
+- **iPhone:** [Financeiros-iOS.ipa](https://github.com/LorenzoBCunha/financeiro/releases/download/v1.0.0-beta.1/Financeiros-iOS.ipa) — arquivo **experimental e sem assinatura**. Não instala diretamente: precisa ser assinado antes de uma tentativa de instalação.
 
 No iPhone, uma alternativa gratuita é seguir a documentação do [AltStore Classic para Windows](https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows) e tentar assinar o IPA com a própria conta Apple. Aplicativos instalados dessa maneira exigem renovação periódica, normalmente a cada sete dias. A compatibilidade desse processo com este IPA ainda precisa ser testada. Não compartilhe senhas da conta Apple.
 
@@ -34,8 +34,8 @@ Não há sincronização bancária ou conta no aplicativo. Os lançamentos e sal
 SHA-256 para verificar que o download corresponde ao arquivo desta versão:
 
 ```text
-Financeiros.apk                   aac736b6e123a2c1de3b87c4e45e7ac0b1f4fa2402a1cee946c66fa9d0093c25
-Financeiros-iOS-nao-assinado.ipa 52f30d50ddb6f4f958d999572dfc041c897dc3efbda00ae2b6814eb764edf02b
+Financeiros-Android.apk                   aac736b6e123a2c1de3b87c4e45e7ac0b1f4fa2402a1cee946c66fa9d0093c25
+Financeiros-iOS.ipa 52f30d50ddb6f4f958d999572dfc041c897dc3efbda00ae2b6814eb764edf02b
 ```
 
 ## Contato
