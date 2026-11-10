@@ -34,7 +34,7 @@ export default function Onboarding({db,onComplete,existing}:{db:SQLiteDatabase;o
     const commit=async()=>{ setBusy(true); try { if (existing) await saveNextPlan(db,plan); else await saveInitialPlan(db,plan,userName); onComplete(); } catch(error) { Alert.alert('Não foi possível salvar',error instanceof Error?error.message:'Tente novamente.'); } finally {setBusy(false);} };
     if (margin<0) Alert.alert('Planejamento acima da renda',`As despesas e metas passam o salário em R$ ${(Math.abs(margin)/100).toFixed(2).replace('.',',')}. Você pode ajustar agora ou continuar.`,[{text:'Ajustar',style:'cancel'},{text:'Continuar',onPress:()=>void commit()}]); else await commit();
   }
-  return <ScrollView style={{flex:1,backgroundColor:'#000'}} contentContainerStyle={{padding:24,paddingTop:58,paddingBottom:48}} keyboardShouldPersistTaps="handled">
+  return <ScrollView style={{flex:1,backgroundColor:'#000'}} contentContainerStyle={{padding:24,paddingTop:16,paddingBottom:48}} keyboardShouldPersistTaps="handled">
     <Text style={{color:'#8a8a8a',fontSize:13,fontFamily:'HankenGrotesk_400Regular'}}>FINANCEIROS</Text><Text style={{color:'#f2f2f2',fontSize:30,fontFamily:'HankenGrotesk_400Regular',marginTop:16}}>{existing?'Planejamento futuro':'Seu ponto de partida'}</Text>
     <Text style={{color:'#8a8a8a',fontFamily:'HankenGrotesk_400Regular',marginTop:8,lineHeight:21}}>{existing?'As alterações valem a partir do próximo mês.':'Informe seu nome e salário. Você pode incluir despesas fixas e metas agora ou continuar sem elas.'}</Text>
     {!existing && <Input label="Seu nome" value={userName} onChangeText={setUserName} />}

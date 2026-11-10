@@ -14,7 +14,7 @@ export default function NameScreen({db,initialName,onComplete,onCancel}:{db:SQLi
     catch(error) {Alert.alert('Confira seu nome',error instanceof Error?error.message:'Não foi possível salvar.');}
     finally {setBusy(false);}
   }
-  return <View style={{flex:1,backgroundColor:'#000',padding:24,paddingTop:58}}>
+  return <View style={{flex:1,backgroundColor:'#000',padding:24,paddingTop:16}}>
     <Text style={{color:'#f2f2f2',fontFamily:'HankenGrotesk_400Regular',fontSize:28}}>Como podemos chamar você?</Text>
     <Text style={{color:'#8a8a8a',fontFamily:'HankenGrotesk_400Regular',marginTop:10}}>Seu nome fica somente neste aparelho.</Text>
     <TextInput accessibilityLabel="Seu nome" maxLength={80} autoCapitalize="words" value={name} onChangeText={setName} placeholder="Seu nome" placeholderTextColor="#8a8a8a" style={{color:'#f2f2f2',fontFamily:'HankenGrotesk_400Regular',fontSize:16,borderBottomWidth:1,borderBottomColor:'#1f1f1f',marginTop:24,paddingVertical:12}}/>

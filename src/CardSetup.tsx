@@ -21,7 +21,7 @@ export default function CardSetup({db,existing,onComplete,onCancel}:{db:SQLiteDa
    if(choice&&cards.some(c=>!/^\d{1,2}$/.test(c.closing)||!/^\d{1,2}$/.test(c.due))){Alert.alert('Confira as datas','Informe os dias de fechamento e vencimento de cada cartão.');return;}
    setBusy(true);try{await saveCards(db,list);onComplete();}catch(error){Alert.alert('Não foi possível salvar',error instanceof Error?error.message:'Tente novamente.');}finally{setBusy(false);}
  }
- return <ScrollView style={{flex:1,backgroundColor:'#000'}} contentContainerStyle={{padding:24,paddingTop:55,paddingBottom:45}} keyboardShouldPersistTaps="handled">
+ return <ScrollView style={{flex:1,backgroundColor:'#000'}} contentContainerStyle={{padding:24,paddingTop:16,paddingBottom:45}} keyboardShouldPersistTaps="handled">
    <Text style={{fontFamily:font,color:fg,fontSize:28}}>Seus cartões</Text><Text style={{fontFamily:font,color:secondary,marginTop:10,lineHeight:21}}>Você usa cartão de crédito? Cadastre um ou mais para acompanhar as faturas. Você pode configurar isso depois.</Text>
    <View style={{flexDirection:'row',flexWrap:'wrap'}}><Button title="Não uso agora" selected={choice===false} onPress={()=>{if(existing?.length)Alert.alert('Desativar cartões?','As faturas existentes e o histórico serão mantidos.',[{text:'Cancelar',style:'cancel'},{text:'Continuar',onPress:()=>setChoice(false)}]);else setChoice(false)}}/><Button title="Sim, uso cartão" selected={choice===true} onPress={()=>{setChoice(true);if(!cards.length)setCards([blank()])}}/></View>
    {choice&&cards.map((card,index)=><View key={card.id??`novo-${index}`} style={{borderBottomWidth:1,borderBottomColor:border,paddingBottom:12}}>
