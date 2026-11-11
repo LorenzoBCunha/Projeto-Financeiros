@@ -1,8 +1,27 @@
+<p align="center"><img src="docs/logo.png" width="96" alt="Logo do Financeiros"></p>
+
 # Financeiro
 
 Aplicativo de organização financeira pessoal, criado por Lorenzo. Planeje receitas e despesas, acompanhe metas, cartões e compromissos e mantenha seus dados no aparelho.
 
 > **Versão beta:** os instaladores estão em teste. O Android já foi aberto em um aparelho; a versão de iPhone foi compilada, mas ainda não foi testada em um iPhone. Faça e confira um backup criptografado antes de depender do aplicativo. No beta atual, o nome exibido no aplicativo é **Financeiros**.
+
+## Capturas de tela
+
+Capturas feitas em um celular Android, com dados fictícios.
+
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/01-acesso.png" width="250" alt="Tela de acesso com PIN e biometria"><br><sub>Acesso com PIN ou biometria</sub></td>
+    <td align="center"><img src="docs/screenshots/02-mes.png" width="250" alt="Resumo do mês com margem para imprevistos"><br><sub>Resumo do mês</sub></td>
+    <td align="center"><img src="docs/screenshots/03-lancamentos.png" width="250" alt="Lista de lançamentos do mês"><br><sub>Lançamentos</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/04-metas.png" width="250" alt="Metas e caixinhas com progresso"><br><sub>Metas e caixinhas</sub></td>
+    <td align="center"><img src="docs/screenshots/05-dividas.png" width="250" alt="Dívidas e faturas"><br><sub>Dívidas e faturas</sub></td>
+    <td align="center"><img src="docs/screenshots/06-novo-lancamento.png" width="250" alt="Formulário de novo lançamento"><br><sub>Novo lançamento</sub></td>
+  </tr>
+</table>
 
 ## Downloads
 

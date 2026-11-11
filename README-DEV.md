@@ -100,3 +100,12 @@ Em Metas, abra a movimentação da meta e informe o saldo inicial real. Depois r
 Em Mês → Despesas recorrentes, cadastre contas mensais, trimestrais, semestrais ou anuais e crie cada ocorrência em Devo quando desejar acompanhá-la. Evite cadastrar uma mesma obrigação também como despesa fixa. As datas e os avisos devem ser conferidos com o prestador.
 
 Em Backup, é possível ativar lembretes locais a cada 7 ou 30 dias. O prazo é reiniciado ao confirmar que salvou o arquivo; o lembrete não cria nem envia backups automaticamente.
+
+## Capturas de tela (build de demonstração)
+
+O aplicativo bloqueia captura de tela de propósito. Para gerar prints, use uma variante separada, com dados fictícios, que convive com o app real:
+
+1. Em `src/demo.ts`, troque `DEMO` para `true` (libera a captura). Volte para `false` antes de gerar o APK de uso.
+2. Em `android/app/build.gradle`, o `applicationId` pode ser trocado por `.demo` com `-Pdemo` (a pasta `android/` é regenerada pelo `prebuild`, então esse ajuste é manual).
+3. Compile com `.\gradlew.bat assembleRelease -Pdemo`, instale e preencha só com dados inventados.
+4. Antes de publicar, recorte a barra de status e confira que não há notificações, nomes ou valores reais nas imagens.

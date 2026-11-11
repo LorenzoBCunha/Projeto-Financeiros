@@ -2,6 +2,7 @@ import React,{useCallback,useEffect,useRef,useState} from 'react';
 import {AppState,ActivityIndicator,StatusBar,Platform} from 'react-native';
 import {Pressable,Text,TextInput,View,Path,ThemeProvider,useTheme} from '../src/ui';
 import Svg from 'react-native-svg';
+import {DEMO} from '../src/demo';
 import * as ScreenCapture from 'expo-screen-capture';
 import type {SQLiteDatabase} from 'expo-sqlite';
 import {accessState,initializePin,unlockDatabase,unlockBiometric,clearSecuritySession} from '../src/security';
@@ -16,7 +17,7 @@ function Btn({title,onPress,kind='secondary'}:{title:string;onPress:()=>void;kin
 export default function Root(){return <ThemeProvider><RootContent/></ThemeProvider>}
 function RootContent(){
  const {light}=useTheme();const insets=useSafeAreaInsets();const [fontsLoaded]=useFonts({HankenGrotesk_400Regular,HankenGrotesk_600SemiBold});const [db,setDb]=useState<SQLiteDatabase|null>(null);const [ready,setReady]=useState(false);const [recoveryMode,setRecoveryMode]=useState(false);const [configured,setConfigured]=useState(false);const [visible,setVisible]=useState(AppState.currentState==='active');const [busy,setBusy]=useState(false);const [message,setMessage]=useState('');const [access,setAccess]=useState<Awaited<ReturnType<typeof accessState>>|null>(null);const [choice,setChoice]=useState<'pin'|null>(null);const [pin,setPin]=useState('');const [confirmation,setConfirmation]=useState('');const backgroundAt=useRef<number|null>(null);const lockTimer=useRef<ReturnType<typeof setTimeout>|null>(null);const dbRef=useRef<SQLiteDatabase|null>(null);const busyRef=useRef(false);
- useEffect(()=>{void (async()=>{try{await ScreenCapture.preventScreenCaptureAsync();if(Platform.OS==='ios')await ScreenCapture.enableAppSwitcherProtectionAsync(1);setReady(true)}catch{setMessage('Não foi possível proteger a tela.')}})()},[]);
+ useEffect(()=>{void (async()=>{try{if(!DEMO)await ScreenCapture.preventScreenCaptureAsync();if(Platform.OS==='ios')await ScreenCapture.enableAppSwitcherProtectionAsync(1);setReady(true)}catch{setMessage('Não foi possível proteger a tela.')}})()},[]);
  const refreshAccess=useCallback(async()=>{try{setAccess(await accessState())}catch{setMessage('Não foi possível verificar o acesso. Os dados foram preservados.')}},[]);
  useEffect(()=>{if(!db)void refreshAccess()},[db,refreshAccess]);
  useEffect(()=>{const listener=AppState.addEventListener('change',state=>{if(state!=='active'){if(backgroundAt.current===null){backgroundAt.current=Date.now();lockTimer.current=setTimeout(()=>{const previous=dbRef.current;dbRef.current=null;setDb(null);clearSecuritySession();if(previous)void previous.closeAsync()},30000);}setVisible(false);return;}if(lockTimer.current){clearTimeout(lockTimer.current);lockTimer.current=null;}if(backgroundAt.current!==null&&Date.now()-backgroundAt.current>=30000){const previous=dbRef.current;dbRef.current=null;setDb(null);clearSecuritySession();if(previous)void previous.closeAsync()}backgroundAt.current=null;setVisible(true)});return()=>{listener.remove();if(lockTimer.current)clearTimeout(lockTimer.current);const previous=dbRef.current;dbRef.current=null;clearSecuritySession();if(previous)void previous.closeAsync()}},[]);

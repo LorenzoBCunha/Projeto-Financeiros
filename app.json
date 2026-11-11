@@ -40,8 +40,10 @@
         "me.everything.badger.permission.BADGE_COUNT_WRITE"
       ],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/financeiros-icon.png",
-        "backgroundColor": "#000000"
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundColor": "#000000",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
       }
     },
     "plugins": [
