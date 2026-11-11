@@ -57,7 +57,7 @@ Não há sincronização bancária ou conta no aplicativo. Os lançamentos e sal
 SHA-256 para verificar que o download corresponde ao arquivo desta versão:
 
 ```text
-Financeiros-Android.apk                   9cb054d97ecb5887a679ddb2e5ef164aba6b5ab14c76475716b76044f4077d83
+Financeiros-Android.apk                   7c6ac4fdfd51f77492534857b599eb846cbf8fcb8ae6f7621343c928e10a6d36
 Financeiros-iOS.ipa 52f30d50ddb6f4f958d999572dfc041c897dc3efbda00ae2b6814eb764edf02b
 ```
 
