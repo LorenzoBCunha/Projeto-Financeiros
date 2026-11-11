@@ -18,8 +18,11 @@ Capturas feitas em um celular Android, com dados fictícios.
   </tr>
   <tr>
     <td align="center"><img src="docs/screenshots/04-metas.png" width="250" alt="Metas e caixinhas com progresso"><br><sub>Metas e caixinhas</sub></td>
-    <td align="center"><img src="docs/screenshots/05-dividas.png" width="250" alt="Dívidas e faturas"><br><sub>Dívidas e faturas</sub></td>
+    <td align="center"><img src="docs/screenshots/05-dividas.png" width="250" alt="Dívidas com botão para adicionar ao calendário"><br><sub>Dívidas e calendário</sub></td>
     <td align="center"><img src="docs/screenshots/06-novo-lancamento.png" width="250" alt="Formulário de novo lançamento"><br><sub>Novo lançamento</sub></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="docs/screenshots/07-lembretes.png" width="250" alt="Pergunta sobre receber lembretes no primeiro acesso"><br><sub>Lembretes (primeiro acesso)</sub></td>
   </tr>
 </table>
 
@@ -36,7 +39,8 @@ No iPhone, uma alternativa gratuita é seguir a documentação do [AltStore Clas
 
 - Registro de ganhos, gastos, contas e dívidas, com planejamento mensal.
 - Metas e caixinhas, acompanhamento de cartões e compras parceladas.
-- Lembretes locais, análise financeira e resumo anual.
+- Lembretes locais (você escolhe no primeiro acesso se quer recebê-los), análise financeira e resumo anual.
+- Botão para adicionar o vencimento de dívidas e faturas ao calendário do celular. O app não acessa sua agenda: ele abre a tela de novo evento e você confirma.
 - PIN ou biometria para acesso e backup criptografado com senha escolhida pela pessoa.
 
 Não há sincronização bancária ou conta no aplicativo. Os lançamentos e saldos são informados manualmente. O compartilhamento de extratos e backups depende de uma ação da pessoa usuária.

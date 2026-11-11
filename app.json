@@ -37,7 +37,9 @@
         "com.oppo.launcher.permission.READ_SETTINGS",
         "com.oppo.launcher.permission.WRITE_SETTINGS",
         "me.everything.badger.permission.BADGE_COUNT_READ",
-        "me.everything.badger.permission.BADGE_COUNT_WRITE"
+        "me.everything.badger.permission.BADGE_COUNT_WRITE",
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
       ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/android-icon-foreground.png",
@@ -62,6 +64,14 @@
       ],
       "expo-notifications",
       "expo-font",
+      [
+        "expo-calendar",
+        {
+          "writeOnlyAccess": true,
+          "writeOnlyCalendarPermission": "O Financeiros só adiciona eventos de vencimento ao seu calendário quando você pede.",
+          "calendarPermission": "O Financeiros só adiciona eventos de vencimento ao seu calendário quando você pede."
+        }
+      ],
       "./withReleaseSigning.js",
       "./withPinKdf.js",
       "./withShortSqlitePaths.js"
