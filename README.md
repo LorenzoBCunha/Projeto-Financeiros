@@ -28,10 +28,10 @@ Capturas feitas em um celular Android, com dados fictícios.
 
 ## Downloads
 
-Acesse a [versão beta e seus arquivos](https://github.com/LorenzoBCunha/financeiro/releases/tag/v1.0.0-beta.1):
+Acesse a [versão beta e seus arquivos](https://github.com/LorenzoBCunha/Projeto-Financeiros/releases/tag/v1.0.0-beta.1):
 
-- **Android:** [Financeiros-Android.apk](https://github.com/LorenzoBCunha/financeiro/releases/download/v1.0.0-beta.1/Financeiros-Android.apk) — baixe o arquivo no aparelho e siga as instruções de instalação do Android.
-- **iPhone:** [Financeiros-iOS.ipa](https://github.com/LorenzoBCunha/financeiro/releases/download/v1.0.0-beta.1/Financeiros-iOS.ipa) — arquivo **experimental e sem assinatura**. Não instala diretamente: precisa ser assinado antes de uma tentativa de instalação.
+- **Android:** [Financeiros-Android.apk](https://github.com/LorenzoBCunha/Projeto-Financeiros/releases/download/v1.0.0-beta.1/Financeiros-Android.apk) — baixe o arquivo no aparelho e siga as instruções de instalação do Android.
+- **iPhone:** [Financeiros-iOS.ipa](https://github.com/LorenzoBCunha/Projeto-Financeiros/releases/download/v1.0.0-beta.1/Financeiros-iOS.ipa) — arquivo **experimental e sem assinatura**. Não instala diretamente: precisa ser assinado antes de uma tentativa de instalação.
 
 No iPhone, uma alternativa gratuita é seguir a documentação do [AltStore Classic para Windows](https://faq.altstore.io/altstore-classic/how-to-install-altstore-windows) e tentar assinar o IPA com a própria conta Apple. Aplicativos instalados dessa maneira exigem renovação periódica, normalmente a cada sete dias. A compatibilidade desse processo com este IPA ainda precisa ser testada. Não compartilhe senhas da conta Apple.
 
